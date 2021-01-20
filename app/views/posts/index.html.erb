@@ -1,0 +1,79 @@
+<div class="top-container">
+  <p class="notice" style="margin: 20px;"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="text-center">最新の投稿記事</h2>
+        <% @posts.each do |post| %>
+          <%= link_to post do %>
+          <div class="col-md-5">
+            <div class="new-img">
+              <% if post.image_id.present? %>
+                <%= image_tag attachment_url(post, :image, :fill, 300, 300, format: "jpg") %>
+              <% else %>
+                <%= image_tag 'kanpai',size: '300×300' %>
+              <% end %>
+            </div>
+            <div class="new-detail">
+              <p>【レシピ名】<%= post.title %></p>
+              <p>【投稿者】<%= post.user.name %></p>
+              <%#=simple_format post.matarial %>
+                <%#= simple_format post.body %>
+                  <p>【コメント】<%= post.comment %></p>
+                  <div class="good-btn">
+                    <div>
+                      <p>いいね件数:<%= post.likes.count %></p>
+                    </div>
+                    &nbsp;
+                    <% if user_signed_in? %>
+                      <% if current_user.already_liked?(post) %>
+                        <%= button_to 'いいねを解除', like_path(post.id), method: :delete %>
+                      <% else %>
+                        <%= button_to 'いいね', likes_path(post_id: post.id) %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <p class="text-right">投稿日：<%= post.created_at.strftime("%Y年%m月%d日") %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="centersp">
+            <%= paginate @posts %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <h2 class="text-center">人気のレシピ</h2>
+          <% @likes.first(5).each do |like| %>
+            <%= link_to like do %>
+            <div class="side-container">
+              <div class="side">
+                <div class="side-img">
+                  <% if like.image_id.present? %>
+                    <%= image_tag attachment_url(like, :image, :fill, 300, 300, format: "jpg") %>
+                  <% else %>
+                    <%= image_tag 'kanpai',size: '200×200' %>
+                  <% end %>
+                </div>
+                <div class="side-detail">
+                  【レシピ名】<p>
+                    <%= like.title %></p>
+                  【投稿者】<p>
+                    <%= like.user.name %></p>
+                  【いいね件数】<p>
+                    <%= like.likes.count %>件</p>
+                  <p><%=like.created_at.strftime("%Y年%m月%d日") %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="centerpc">
+    <%= paginate @posts %>
+  </div>
+</div>

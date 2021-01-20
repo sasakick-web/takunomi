@@ -1,0 +1,51 @@
+<div class="top-container">
+  <div class="container">
+    <h1>ユーザー情報</h1>
+    <h3>ユーザー名</h3>
+    <%= @user.name %>
+    <h3>メールアドレス</h3>
+    <%= @user.email %>
+    <div class="btn-area">
+      <%# ログインユーザーかつ、ログインしているユーザーと投稿者の名前が同じ場合のみ編集・削除を表示 %>
+        <%= link_to '編集' , edit_user_registration_path , class: 'btn btn-primary' %>
+        <%= link_to '削除' , user_registration_path , method: :delete, data: {confirm: '削除してもよろしいですか？'}, class: 'btn btn-danger' %>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <h1 class="text-center">自分の投稿履歴</h1>
+      <% @user.posts.each do |post| %>
+        <%= link_to post do %>
+        <div class="col-md-5">
+          <div class="new-img">
+            <% if post.image_id.present? %>
+              <%= image_tag attachment_url(post, :image, :fill, 300, 300, format: "jpg") %>
+            <% else %>
+              <%= image_tag 'kanpai',size: '300×300' %>
+            <% end %>
+          </div>
+          <div class="new-detail">
+            <p>【レシピ名】<%= post.title %></p>
+            <p>【投稿者】<%= post.user.name %></p>
+            <%#=simple_format post.matarial %>
+              <%#= simple_format post.body %>
+                <p>【コメント】<%= post.comment %></p>
+                <div class="good-btn">
+                  <div>
+                    <p>いいね件数:<%= post.likes.count %></p>
+                  </div>
+                  &nbsp;
+                  <% if user_signed_in? %>
+                    <% if current_user.already_liked?(post) %>
+                      <%= button_to 'いいねを解除', like_path(post.id), method: :delete %>
+                    <% else %>
+                      <%= button_to 'いいね', likes_path(post_id: post.id) %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <p class="text-right">投稿日：<%= post.created_at.strftime("%Y年%m月%d日") %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+  </div>

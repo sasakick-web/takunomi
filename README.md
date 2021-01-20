@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* アプリの概要
+宅飲みに適した簡単レシピ情報を共有する投稿サービスです。
+コロナの流行で外食自粛などが続き、自宅で飲食をする機会が増えています。
+自粛中でも充実したお家飲みを楽しめるレシピ情報発信サイトを作りたいと思い作成しました。今後チャット機能等の実装を検討しています。
 
-Things you may want to cover:
+* アプリケーションの機能一覧
+・記事投稿機能（一覧表示・詳細表示）
+・記事にいいねを作る機能
+・人気のレシピランキング機能（いいね数）
+・認証機能(devise)
+・ユーザーの編集・削除機能
+・ページネーション機能 （kaminari)
+・画像アップロード機能：（jQuery）
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* アプリケーション内で使用している主要な技術一覧
+・インフラ：AWS
+・データベース：MySQL
+・フレームワーク：RubyonRails

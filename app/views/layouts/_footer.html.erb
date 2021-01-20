@@ -1,0 +1,41 @@
+<footer id="footer">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-sm-8 col-md-9">
+     <ul class="navbar-nav list-inline">
+       <% if user_signed_in? %>
+         <%= link_to '新規作成' , new_post_path, class:"btn btn-primary" %>
+         &nbsp;
+         <%= link_to 'ログアウト' , destroy_user_session_path, method: :delete , class:"btn btn-danger"%>
+       <% else %>
+         <%= link_to 'ユーザー登録' , new_user_registration_path , class:"btn btn-success" %>
+         &nbsp;
+         <%= link_to 'ログイン' , new_user_session_path , class:"btn btn-info" %>
+       <% end %>
+      <!-- <li><a href="">ホーム</a></li>
+      <li><a href="#">会社概要</a></li>
+      <li><a href="#">サービス</a></li>
+      <li><a href="#">採用情報</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+      <li><a href="#">サイトマップ</a></li>
+      <li><a href="#">プライバシーポリシー</a></li> -->
+     </ul>
+   </div>
+  <div class="col-sm-4 col-md-3">
+   <address>
+   <dl>
+   <dt>◯◯◯◯株式会社</dt>
+   <dd>〒000-0000 宮城県-◯◯◯-◯◯◯</dd>
+   <dd>Tel 03-1234-5678 Fax 03-1234-5678</dd>
+   <dd>仙台駅◯◯◯◯より徒歩1分</dd>
+   <dd>月～金　AM 9:00 ～ PM 5:00 日曜・祝日定休</dd>
+   </dl>
+   </address>
+  </div>
+  </div>
+ </div>
+ <div class="copyright">
+  Copyright &copy; Sasaki Engineering Office All rights reserved.
+ </div>
+</footer>
+</div>
