@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new,:edit]
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_current_user, {only: [:edit, :update]}
 
   def index
     @posts = Post.order(created_at: :desc)
@@ -44,6 +45,13 @@ class PostsController < ApplicationController
       redirect_to root_path, notice: '削除に成功しました'
     else
       redirect_to root_path, alert: '削除できませんでした'
+  end
+end
+
+def ensure_current_user
+  if @post.user_id != current_user.id
+    flash[:notice]="権限がありません"
+    redirect_back(fallback_location: root_path)
   end
 end
 

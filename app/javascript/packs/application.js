@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")  // ←の1行を追加
 require ('test.js')
+require ("test.js")
 //= require bootstrap-sprockets
 
 //= require jquery
