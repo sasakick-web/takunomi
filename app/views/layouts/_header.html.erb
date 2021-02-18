@@ -23,6 +23,8 @@
             <%= link_to 'ユーザー登録' , new_user_registration_path , class:"btn btn-success" %>
             &nbsp;
             <%= link_to 'ログイン' , new_user_session_path , class:"btn btn-info" %>
+            &nbsp;
+            <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post ,class:"btn btn-info" %>
           <% end %>
         </div>
       </div>
