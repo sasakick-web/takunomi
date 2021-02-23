@@ -1,0 +1,29 @@
+<%= form_for topic do |f| %>
+
+<div id="file2" class="form-group font-awesome">
+  <% if topic.image_id.present? %>
+    <%= image_tag attachment_url(topic, :image), class: 'topic-image' %>
+  <% else %>
+    <%= image_tag 'gray.jpg' ,id:"image", class: 'topic-image' %>
+  <% end %>
+  <!-- <i class="fa fa-camera"></i> -->
+  <br>
+  <label>
+    <input type="file" name="file" class="js-upload-file">ファイルを選択
+  </label>
+  <div class="js-upload-filename">ファイルが未選択です</div>
+  <div class="fileclear js-upload-fileclear">選択ファイルをクリア</div>
+</div>
+<%= f.attachment_field :image %>
+
+<div class="form-group">
+  <%= f.label :title, 'タイトル' %>
+  <%= f.text_field :title, class: 'form-control'%>
+</div>
+
+<div class="form-group">
+  <%= f.label :body, 'トピック詳細' %>
+  <%= f.text_area :body,rows: 10, class: 'form-control' %>
+</div>
+<%= f.submit '送信' , class: 'btn btn-success' %>
+<% end %>

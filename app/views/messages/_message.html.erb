@@ -1,0 +1,4 @@
+<% @messages.each_with_index do |message , idx| %>
+  <p><%= idx + 1 %>.<%= message.content %></p>
+  <p style="border-bottom: 9px solid;border-bottom-color: #ddd;"><%= message.user.name %>さん :  <%= l message.created_at, format: '%Y年%-m月%-d日(%a) %H:%M' %></p>
+<% end %>
