@@ -12,6 +12,8 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
+    <p class="notice" style="margin: 20px;"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
     <%= render 'layouts/footer' %>
     <%= javascript_include_tag '/test.js' %>　

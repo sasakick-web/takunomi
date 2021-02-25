@@ -23,6 +23,8 @@ html {
 }
 
 body {
+  background-image: image-url('yellow_bg.jpg');
+  background-size: cover;
   padding-top: 50px;
 }
 
@@ -79,7 +81,7 @@ input[type="submit"] {
 }
 
 .top-container {
-  background-image: image-url('blue_bg.jpg');
+  // background-image: image-url('blue_bg.jpg');
   height: auto;
   min-height: 2000px;
   background-size: cover;
@@ -107,6 +109,12 @@ input[type="submit"] {
 .good-btn {
   display: flex;
 }
+
+.topic-btn {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  text-align: center;
+}
 // show.html.erb
 
 .show-container {
@@ -126,6 +134,7 @@ input[type="submit"] {
 
 #file {
   position: relative;
+  max-width: 400px;
   cursor: pointer;
 
   i {

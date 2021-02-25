@@ -1,4 +1,11 @@
 <% @messages.each_with_index do |message , idx| %>
-  <p><%= idx + 1 %>.<%= message.content %></p>
+  <p><%= idx + 1 %>.<%= message.content %>
+<span style="float: right;">
+  <%# ログインユーザーかつ、ログインしているユーザーとメッセージのidが同じ場合のみ編集・削除を表示 %>
+    <% if user_signed_in? && current_user.id == message.user_id %>
+    <%= link_to '削除', message_path(message.id) , method: :delete, data: {confirm: '削除してもよろしいですか？'} %>
+    <% end %>
+</span>
+  </p>
   <p style="border-bottom: 9px solid;border-bottom-color: #ddd;"><%= message.user.name %>さん :  <%= l message.created_at, format: '%Y年%-m月%-d日(%a) %H:%M' %></p>
 <% end %>

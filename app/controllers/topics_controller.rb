@@ -2,6 +2,9 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:edit,:show]
   before_action :find_topic, only: [:show, :edit, :update, :destroy]
 
+  def index
+  end
+
   def new
     @topic = Topic.new
   end
@@ -9,6 +12,7 @@ class TopicsController < ApplicationController
   def show
   # トピックの情報表示に利用
   @topic = Topic.find(params[:id])
+  @messagess = Message.all
   # 投稿一覧表示に利用
   @messages = Message.where(topic_id: params[:id])
   # @messages = Message.includes(:user).order(created_at: :asc).where(topic_id: params[:id])

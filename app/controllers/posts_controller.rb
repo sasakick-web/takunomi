@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
     @likes = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6)
+    # @topic = @topic.page(params[:page])
   end
 
   def show
@@ -28,7 +29,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, notice: '作成できました'
     else
-      render :new, alert: '作成できませんでした'
+      flash[:alert] = "作成できませんでした"
+      redirect_to new_post_path
    end
   end
 
@@ -36,15 +38,16 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, notice: '更新できました'
     else
-      render :edit, alert: '更新できませんでした'
+      flash[:alert] = "更新できませんでした"
+      redirect_to edit_post_path
     end
   end
 
   def destroy
     if @post.destroy
-      redirect_to root_path, notice: '削除に成功しました'
+      flash[:alert] = "削除できませんでした"
+      redirect_to delete_post_path
     else
-      redirect_to root_path, alert: '削除できませんでした'
   end
 end
 

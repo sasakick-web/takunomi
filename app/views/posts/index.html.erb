@@ -1,6 +1,4 @@
 <div class="top-container">
-  <p class="notice" style="margin: 20px;"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
   <div class="container">
     <div class="row">
       <div class="col-md-8">
@@ -44,7 +42,7 @@
             <% end %>
           <% end %>
           <div class="centersp">
-            <%= paginate @posts %>
+            <%= paginate @posts , :param_name => 'posts_page' %>
           </div>
         </div>
 
@@ -78,7 +76,7 @@
     </div>
   </div>
   <div class="centerpc">
-    <%= paginate @posts %>
+    <%= paginate @posts , :param_name => 'posts_page' %>
   </div>
 
 <div class="container">
@@ -96,7 +94,7 @@
 <% end %>
   <% @topics = Topic.all.order(created_at: :desc) %>
   <div class="topic">
-  <% @topics.each do |topic| %>
+  <% @topics.first(3).each do |topic| %>
   <%= link_to topic do %>
     <div class="topic-container">
     <div class="topic-img">
@@ -116,5 +114,8 @@
 <% end %>
 </div>
 </div>
+</div>
+<div class="topic-btn">
+  <%= link_to '過去トピックを見る', "/topics" , class:"btn btn-primary"%>
 </div>
 </div>

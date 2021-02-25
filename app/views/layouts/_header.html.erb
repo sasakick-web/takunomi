@@ -14,7 +14,7 @@
           <% if user_signed_in? %>
             <%= link_to current_user.name, "/users/show" %>さん
             &nbsp;
-            <%= link_to 'レシピ投稿' , new_post_path, class:"btn btn-primary" %>
+            <%= link_to 'レシピ投稿' , new_post_path, class:"btn btn-success" %>
             &nbsp;
             <%= link_to 'ログアウト' , destroy_user_session_path, method: :delete , class:"btn btn-danger"%>
           <% else %>

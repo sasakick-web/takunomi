@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="col-md-12">
+  <h1>過去トピック一覧</h1>
+  <% if user_signed_in? %>
+  <%= link_to 'トピック作成' , new_topic_path, class:"btn btn-success" %>
+  &nbsp;
+  <%= link_to 'ログアウト' , destroy_user_session_path, method: :delete , class:"btn btn-danger"%>
+<% else %>
+  <%= link_to 'トピック作成' , new_topic_path, class:"btn btn-success" %>
+  &nbsp;
+  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post ,class:"btn btn-info" %>
+<% end %>
+  <% @topics = Topic.all.order(created_at: :desc) %>
+  <div class="topic">
+  <% @topics.each do |topic| %>
+  <%= link_to topic do %>
+    <div class="topic-container">
+    <div class="topic-img">
+      <% if topic.image_id.present? %>
+        <%= image_tag attachment_url(topic, :image, :fill, 300, 300, format: "jpg") %>
+      <% else %>
+        <%= image_tag 'kanpai',size: '300×300' %>
+      <% end %>
+    </div>
+    <div class="topic-detail">
+      <p>【タイトル】<%= topic.title %></p>
+      <p class="height"><%= topic.body %></p>
+      <p class="text-right">投稿日：<%= topic.created_at.strftime("%Y年%m月%d日") %></p>
+    </div>
+    </div>
+<% end %>
+<% end %>
+</div>
+</div>
+</div>

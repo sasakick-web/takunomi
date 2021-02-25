@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :messages
   post 'message/create' => 'messages#create', as: :message_create
   # get 'topics/show'
-  # get 'topics/show/:id' => 'topics#show', as: :topics_show
   get 'users/show'
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
   }
   resources :posts
   resources :topics
+  get 'topics/show/:id' => 'topics#show', as: :topics_show
+
   resources :likes, only: [:create, :destroy]
   root "posts#index"
   devise_scope :user do
