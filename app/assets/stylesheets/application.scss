@@ -23,6 +23,7 @@ html {
 }
 
 body {
+  position: relative;
   background-image: image-url('yellow_bg.jpg');
   background-size: cover;
   padding-top: 50px;
@@ -76,6 +77,10 @@ input[type="submit"] {
   font-size: 20px;
 }
 
+.notice {
+  margin: 50px 0px 0px 50px;
+}
+
 #btn-click {
   cursor: pointer;
 }
@@ -83,7 +88,6 @@ input[type="submit"] {
 .top-container {
   // background-image: image-url('blue_bg.jpg');
   height: auto;
-  min-height: 2000px;
   background-size: cover;
 
   p {
@@ -118,9 +122,7 @@ input[type="submit"] {
 // show.html.erb
 
 .show-container {
-  background-image: image-url('blue_bg.jpg');
   height: auto;
-  min-height: 900px;
   background-size: cover;
   .margin {
     margin-top: 30px;
@@ -263,13 +265,15 @@ label {
 // footer
 
 footer {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   clear: both;
   background-color: #444;
-  bottom: 0;
   padding: 15px 5px 0;
   color: #fff;
   font-size: 12px;
+  margin-top: auto;
 }
 
 footer .navbar-nav li a {
@@ -283,6 +287,10 @@ footer .navbar-nav li a:hover {
   color: #dcdcdc;
 }
 
+.footer-padding-top {
+  padding-top: 150px;
+}
+
 .copyright {
   text-align: left;
   font-size: 90%;
@@ -292,10 +300,6 @@ footer .navbar-nav li a:hover {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-footer {
-  margin-top: auto;
 }
 // #input_plural {
 //     margin: 10px 0;

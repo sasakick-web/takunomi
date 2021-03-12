@@ -12,7 +12,8 @@ class MessagesController < ApplicationController
     # @message.topic_id = Topic.topic_id
     @message.user_id = current_user.id
     @message.save
- end
+    redirect_to topics_show_path(id: @message.topic_id)
+  end
 
    def destroy
      if @message.destroy
